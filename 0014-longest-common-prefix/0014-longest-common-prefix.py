@@ -6,7 +6,7 @@ class Solution:
             min_len = min(min_len , len(i))
         i = 0
         while i<min_len : 
-            for s in strs : 
+            for s in strs[1:] : 
                 if s[i]!=strs[0][i] :
                     return s[:i]
             i+=1
