@@ -4,17 +4,11 @@ class Solution:
         i = 0
         sign = 1
         n = len(s)
-
-        # Skip leading whitespaces
         while i < n and s[i] == ' ':
             i += 1
-
-        # Check if the next character is a sign
         if i < n and (s[i] == '-' or s[i] == '+'):
             sign = -1 if s[i] == '-' else 1
             i += 1
-
-        # Convert the digits to an integer
         while i < n and s[i].isdigit():
             res = res * 10 + int(s[i])
             i += 1
