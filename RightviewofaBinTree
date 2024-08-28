@@ -1,0 +1,19 @@
+def recursionRight(self, root, level, res):
+        # Check if the current node is None
+        if not root:
+            return
+        
+        # Check if the size of the result list
+        # is equal to the current level
+        if len(res) == level:
+            # If equal, add the value of the
+            # current node to the result list
+            res.append(root.data)
+            
+            # Recursively call the function for the
+            # right child with an increased level
+            self.recursionRight(root.right, level + 1, res)
+            
+            # Recursively call the function for the
+            # left child with an increased level
+            self.recursionRight(root.left, level + 1, res)
