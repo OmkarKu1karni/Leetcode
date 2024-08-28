@@ -5,21 +5,18 @@
 #         self.left = left
 #         self.right = right
 
-def height(root):
-    if not root : 
-        return 0
-    lh = height(root.left)
-    rh = height(root.right)
-    
-    return max(lh,rh)+1
-
+def dfsheight(root):
+    if root == None:
+                return 0
+    lh = dfsheight(root.left)
+    if lh==-1 :
+        return -1
+    rh = dfsheight(root.right)
+    if rh==-1 :
+        return -1
+    if abs(lh-rh)>1 :
+        return -1
+    return 1+max(lh,rh)
 class Solution:
     def isBalanced(self, root: Optional[TreeNode]) -> bool:
-        if not root : 
-            return True 
-        lh = height(root.left)
-        rh = height(root.right)
-        
-        if abs(lh-rh)<=1 and self.isBalanced(root.left) and self.isBalanced(root.right) :
-            return True
-        return False
+        return dfsheight(root)!=-1
