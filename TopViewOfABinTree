@@ -1,0 +1,47 @@
+def topView(self, root):
+        # Vector to store the result
+        ans = []
+        
+        # Check if the tree is empty
+        if not root:
+            return ans
+        
+        # Map to store the top view nodes
+        # based on their vertical positions
+        mpp = {}
+        
+        # Queue for BFS traversal, each element
+        # is a pair containing node 
+        # and its vertical position
+        q = deque([(root, 0)])
+        
+        # Push the root node with its vertical
+        # position (0) into the queue
+        while q:
+            # Retrieve the node and its vertical
+            # position from the front of the queue
+            node, line = q.popleft()
+            
+            # If the vertical position is not already
+            # in the map, add the node's data to the map
+            if line not in mpp:
+                mpp[line] = node.data
+            
+            # Process left child
+            if node.left:
+                # Push the left child with a decreased
+                # vertical position into the queue
+                q.append((node.left, line - 1))
+            
+            # Process right child
+            if node.right:
+                # Push the right child with an increased
+                # vertical position into the queue
+                q.append((node.right, line + 1))
+        
+        # Transfer values from the
+        # map to the result vector
+        for value in sorted(mpp.items()):
+            ans.append(value[1])
+        
+        return ans
